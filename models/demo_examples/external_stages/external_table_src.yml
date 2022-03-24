@@ -1,0 +1,57 @@
+version: 2
+
+sources:
+  - name: netflix_external_src
+    database: sung_demo
+    schema: stages
+    loader: azure blob storage
+    
+    tables:
+      - name: event_ext_tbl
+        description: "External table of Netflix events stored as CSV files"
+        external:
+          location: "@sung_demo.stages.netflix_blob_stage"  # reference an existing external stage
+          file_format: "( type = csv skip_header = 1 )"      # fully specified here, or reference an existing file format
+          auto_refresh: false                # requires configuring an event notification from Amazon S3 or Azure
+          
+        # all Snowflake external tables natively include a `metadata$filename` pseudocolumn
+        # and a `value` column (JSON blob-ified version of file contents), so there is no need to specify
+        # them here. you may optionally specify columns to unnest or parse from the file:
+        columns:
+          - name: show_id
+            data_type: varchar(255)
+            description: "Application ID"
+          - name: type
+            data_type: varchar(255)
+            description: "Application ID"
+          - name: title
+            data_type: varchar(255)
+            description: "Application ID"
+          - name: director
+            data_type: varchar(255)
+            description: "Application ID"
+          - name: cast
+            data_type: varchar(255)
+            description: "Application ID"
+          - name: country
+            data_type: varchar(255)
+            description: "Application ID"
+          - name: date_added
+            data_type: varchar(255)
+            description: "Application ID"
+          - name: release_year
+            data_type: varchar(255)
+            description: "Application ID"
+          - name: rating
+            data_type: varchar(255)
+            description: "Application ID"         
+          - name: duration
+            data_type: varchar(255)
+            description: "Application ID" 
+          - name: listed_in   
+            data_type: varchar(255)
+            description: "Application ID" 
+          - name: description   
+            data_type: varchar(255)
+            description: "Application ID" 
+        

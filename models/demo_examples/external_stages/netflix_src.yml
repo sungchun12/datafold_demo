@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name:     netflix
+    database: sung_demo
+    schema:   stages
+    loader:   snowflake_external_stage built using the create_or_replace_netflix_stage.sql macro # informational only (free text)
+
+    tags:
+      - netflix
+    
+    tables:
+      - name: netflix_blob_stage
