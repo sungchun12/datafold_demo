@@ -1,4 +1,4 @@
-name: dbt PR Validation
+name: dbt Cloud Pull Request Validation
 
 on: 
   pull_request:
