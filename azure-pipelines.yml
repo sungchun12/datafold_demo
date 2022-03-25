@@ -7,7 +7,6 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  DBT_API_KEY:             $(DBT_CLOUD_API_KEY) # add this as a secret variable to your ADO pipeline settings
   DBT_URL:                 https://cloud.getdbt.com # no trailing backslash. Change this for single tenant deployments to your actual base url
   DBT_JOB_CAUSE:           'Azure Pipelines Pull Request Job' # provide a descriptive job cause here for easy debugging down the road
   DBT_ACCOUNT_ID:          16173
@@ -31,3 +30,5 @@ steps:
   inputs:
     scriptSource: 'filePath'
     scriptPath: './scripts/run_and_monitor_dbt_cloud_job.py'
+  env:
+    DBT_API_KEY: $(DBT_CLOUD_API_KEY) # add this as a secret variable to your ADO pipeline settings
