@@ -14,7 +14,7 @@ variables:
   DBT_PROJECT_ID:          85642
   DBT_PR_JOB_ID:           71253
   DBT_JOB_SCHEMA_OVERRIDE: PR_AZURE_PIPELINES_$(System.PullRequest.PullRequestId)
-  DBT_JOB_BRANCH:          $(Build.SourceBranch)
+  DBT_JOB_BRANCH:          $(System.PullRequest.SourceBranch)
 
 steps:
 
