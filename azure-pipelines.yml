@@ -7,14 +7,14 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  DBT_API_KEY:             ${{ secrets.DBT_CLOUD_API_KEY }}
+  DBT_API_KEY:             $(DBT_CLOUD_API_KEY)
   DBT_URL:                 https://cloud.getdbt.com # no trailing backslash. Change this for single tenant deployments to your actual base url
   DBT_JOB_CAUSE:           'Azure Pipelines Pull Request Job' # provide a descriptive job cause here for easy debugging down the road
   DBT_ACCOUNT_ID:          16173
   DBT_PROJECT_ID:          36467
   DBT_PR_JOB_ID:           30611
-  DBT_JOB_SCHEMA_OVERRIDE: PR_GITHUB_ACTIONS_${{github.event.pull_request.number}}
-  DBT_JOB_BRANCH:          ${{github.head_ref}}
+  DBT_JOB_SCHEMA_OVERRIDE: PR_AZURE_PIPELINES_$(System.PullRequest.PullRequestId)
+  DBT_JOB_BRANCH:          $(Build.SourceBranchName)
 
 steps:
 - task: UsePythonVersion@0
