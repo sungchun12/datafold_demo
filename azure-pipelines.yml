@@ -1,7 +1,4 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# dbt Cloud Starter Pipeline
 
 trigger:
 - main
@@ -9,11 +6,29 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  DBT_URL:                 https://cloud.getdbt.com # no trailing backslash. Change this for single tenant deployments to your actual base url
+  DBT_JOB_CAUSE:           'Azure Pipelines Pull Request Job' # provide a descriptive job cause here for easy debugging down the road
+  DBT_ACCOUNT_ID:          16173
+  DBT_PROJECT_ID:          85642
+  DBT_PR_JOB_ID:           71253
+  DBT_JOB_SCHEMA_OVERRIDE: PR_AZURE_PIPELINES_$(System.PullRequest.PullRequestId)
+  DBT_JOB_BRANCH:          $(System.PullRequest.SourceBranch)
+
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.6'
+    addToPath: true
+    architecture: 'x64'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    pip install requests
+
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'filePath'
+    scriptPath: './scripts/run_and_monitor_dbt_cloud_job.py'
+  env:
+    DBT_API_KEY: $(DBT_CLOUD_API_KEY) # add this as a secret variable to your ADO pipeline settings
