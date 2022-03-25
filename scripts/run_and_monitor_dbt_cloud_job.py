@@ -59,6 +59,7 @@ def run_job(url, headers, cause, branch=None, schema_override=None ) -> int:
   run_job_resp = requests.post(url, headers=headers, data=req_payload).json()
 
   # return run id
+  print(run_job_resp)
   return run_job_resp['data']['id']
 
 
