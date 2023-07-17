@@ -3,15 +3,15 @@ tpch:
   outputs:
     dev:
       type: snowflake
-      account: zna84829
+      account: bya42734
 
       # User/password auth
-      user: sung_c
+      user: sung
       password: "{{ env_var('SFPASS') }}"
 
       database: ANALYTICS
       warehouse: TRANSFORMING
       schema: dbt_sung
-      threads: 8
+      threads: 24
       client_session_keep_alive: True
       query_tag:

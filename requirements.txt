@@ -1,2 +1,3 @@
-dbt-core==1.0.4
-continual
+dbt-core==1.5.3
+dbt-snowflake==1.5.2
+data-diff==0.7.14
