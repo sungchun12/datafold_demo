@@ -9,10 +9,10 @@ tpch:
       user: sung
       password: "{{ env_var('SFPASS') }}"
 
-      role: DATAFOLDROLE
+      role: DEMO_ROLE
       database: DEV
       warehouse: DEMO
-      schema: dev_sung
+      schema: development_sung
       threads: 24
       client_session_keep_alive: True
       query_tag:
@@ -25,10 +25,10 @@ tpch:
       user: sung
       password: "{{ env_var('SFPASS') }}"
 
-      role: DATAFOLDROLE
+      role: DEMO_ROLE
       database: DEV
       warehouse: DEMO
-      schema: prod_sung
+      schema: production_sung
       threads: 24
       client_session_keep_alive: True
       query_tag:

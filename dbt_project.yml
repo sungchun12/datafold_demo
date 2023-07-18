@@ -35,7 +35,7 @@ vars:
     dbt_artifacts_table: artifacts
   data_diff:
     prod_database: DEV
-    prod_schema: prod_sung
+    prod_schema: production_sung
 models:
   dbt_artifacts:
     +schema: dbt_artifacts_sung
