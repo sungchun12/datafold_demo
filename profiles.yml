@@ -9,9 +9,26 @@ tpch:
       user: sung
       password: "{{ env_var('SFPASS') }}"
 
-      database: ANALYTICS
-      warehouse: TRANSFORMING
-      schema: dbt_sung
+      role: DATAFOLDROLE
+      database: DEV
+      warehouse: DEMO
+      schema: dev_sung
+      threads: 24
+      client_session_keep_alive: True
+      query_tag:
+
+    prod:
+      type: snowflake
+      account: bya42734
+
+      # User/password auth
+      user: sung
+      password: "{{ env_var('SFPASS') }}"
+
+      role: DATAFOLDROLE
+      database: DEV
+      warehouse: DEMO
+      schema: prod_sung
       threads: 24
       client_session_keep_alive: True
       query_tag:
